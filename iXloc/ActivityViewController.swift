@@ -10,8 +10,12 @@ import UIKit
 
 class ActivityViewController: UIViewController {
 
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var Save: UIBarButtonItem!
     @IBOutlet weak var Cancel: UIBarButtonItem!
+    
+    @IBOutlet weak var descriptionTextView: UITextView!
+    var activityTableViewController: ActivityTableViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,6 +30,9 @@ class ActivityViewController: UIViewController {
 
     @IBAction func Save(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+        let activity=Activity(name:nameTextField.text, description:descriptionTextView.text)
+        activityTableViewController?.activities.append(activity)
+        activityTableViewController?.tableView?.reloadData()
     }
     @IBAction func Cancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

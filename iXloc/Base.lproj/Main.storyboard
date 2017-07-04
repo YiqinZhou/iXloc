@@ -121,6 +121,8 @@
                     <connections>
                         <outlet property="Cancel" destination="VEm-f9-omg" id="80D-He-ENR"/>
                         <outlet property="Save" destination="17K-9Y-mkl" id="bjS-RZ-uSG"/>
+                        <outlet property="descriptionTextView" destination="xqR-nP-LfE" id="qj8-X8-nJZ"/>
+                        <outlet property="nameTextField" destination="Fbo-Cn-fij" id="ZQY-Qk-2w5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qRG-It-gla" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -207,7 +209,7 @@
                     <navigationItem key="navigationItem" title="Activities" id="aro-ZG-3YJ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cxl-gO-IY3">
                             <connections>
-                                <segue destination="42d-dR-LeV" kind="show" id="4BQ-Ft-5wr"/>
+                                <segue destination="42d-dR-LeV" kind="show" identifier="newActivity" id="4BQ-Ft-5wr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
