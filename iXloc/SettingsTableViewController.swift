@@ -1,5 +1,5 @@
 //
-//  ActivityTableViewController.swift
+//  SettingsTableViewController.swift
 //  iXloc
 //
 //  Created by ZhouYiqin on 7/4/17.
@@ -8,9 +8,7 @@
 
 import UIKit
 
-class ActivityTableViewController: UITableViewController, AddActivityDelegate {
-    
-    var activities: [Activity]=[]
+class SettingsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,11 +18,6 @@ class ActivityTableViewController: UITableViewController, AddActivityDelegate {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        activities.append(Activity(name: "iOS Dev", description: "iOS Development"))
-        activities.append(Activity(name: "Sharks", description: "Shark diving"))
-        
-        
-        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,56 +27,28 @@ class ActivityTableViewController: UITableViewController, AddActivityDelegate {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    /*override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return activities.count
+        return 1
     }
+    
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsLine", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text=activities[indexPath.row].name
-        cell.detailTextLabel?.text=activities[indexPath.row].description
 
         return cell
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
-        if (segue.identifier == "newActivity"){
-            let ActivityNavigationController = segue.destination as! UINavigationController
-            let ActivityViewController = ActivityNavigationController.topViewController as! ActivityViewController
-            
-            ActivityViewController.delegate = self
-        
-        }
-        
-    
-    }
-    
-    
-  
-    
-    func didAddActivity(activity: Activity){
-        self.activities.append(activity)
-        self.tableView?.reloadData()
-    }
-    
-    func defaultName()->String?{
-        return "From table"
-    }
-    
-  
-  
-    
-    
-   
+ */
+ 
+ 
     
 
     /*
