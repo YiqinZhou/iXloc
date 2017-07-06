@@ -18,6 +18,7 @@ class SettingsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,6 +48,86 @@ class SettingsTableViewController: UITableViewController {
         return cell
     }
  */
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        let mapType = UserDefaults.standard.string(forKey: "mapType")
+        
+        if indexPath.section == 2 && mapType == nil {
+            cell.accessoryType = .checkmark
+        }
+        
+        if indexPath.section == 2 && indexPath.row == 0 && mapType == "hybrid" {
+            cell.accessoryType = .checkmark
+        }
+        
+        if indexPath.section == 2 && indexPath.row == 1 && mapType == "hybridFlyover" {
+            cell.accessoryType = .checkmark
+        }
+        
+        if indexPath.section == 2 && indexPath.row == 2 && mapType == "satelite" {
+            cell.accessoryType = .checkmark
+        }
+        
+        if indexPath.section == 2 && indexPath.row == 3 && mapType == "sateliteFlyover" {
+            cell.accessoryType = .checkmark
+        }
+        
+        if indexPath.section == 2 && indexPath.row == 4 && mapType == "standard" {
+            cell.accessoryType = .checkmark
+        }
+    }
+    
+  
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Some navigation Items
+        if indexPath.section == 1 && indexPath.row == 0 {
+            self.tabBarController?.selectedIndex = 2
+        }
+        
+        if indexPath.section == 1 && indexPath.row == 1 {
+            self.tabBarController?.selectedIndex = 1
+        }
+        
+        // Settings
+        if indexPath.section == 2 {
+            
+            // First de-select all
+            tableView.cellForRow(at: IndexPath(row: 0, section: 2))?.accessoryType = .none
+            tableView.cellForRow(at: IndexPath(row: 1, section: 2))?.accessoryType = .none
+            tableView.cellForRow(at: IndexPath(row: 2, section: 2))?.accessoryType = .none
+            tableView.cellForRow(at: IndexPath(row: 3, section: 2))?.accessoryType = .none
+            tableView.cellForRow(at: IndexPath(row: 4, section: 2))?.accessoryType = .none
+            
+            // Determine which cell was chosen
+            if let cell = tableView.cellForRow(at: indexPath) {
+                if indexPath.row == 0 {
+                    UserDefaults.standard.set("hybrid", forKey: "mapType")
+                }
+                
+                if indexPath.row == 1 {
+                    UserDefaults.standard.set("hybridFlyover", forKey: "mapType")
+                }
+                
+                if indexPath.row == 2 {
+                    UserDefaults.standard.set("satelite", forKey: "mapType")
+                }
+                
+                if indexPath.row == 3 {
+                    UserDefaults.standard.set("sateliteFlyover", forKey: "mapType")
+                }
+                
+                if indexPath.row == 4 {
+                    UserDefaults.standard.set("standard", forKey: "mapType")
+                }
+                
+                cell.accessoryType = .checkmark
+            }
+        }
+  
+    }
+
  
  
     
