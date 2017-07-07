@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+
 
 class ActivityTableViewController: UITableViewController, AddActivityDelegate {
     
@@ -14,14 +16,35 @@ class ActivityTableViewController: UITableViewController, AddActivityDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Alamofire.request("https://ixloc-43376.firebaseio.com/activities.json").responseJSON(completionHandler: {
+            response in
+            
+            if let activityDictionary=response.result.value as? [String: AnyObject]{
+                
+                //self.activities=[]
+                for (key, value) in activityDictionary{
+                    //print ("Key: \(key)")
+                    //print("Value:\(value)")
+                    
+                    if let singleActivityDictionary = value as? [String: AnyObject]{
+                        let activity = Activity(dictionary: singleActivityDictionary)
+                       
+                        self.activities.append(activity)
+                        self.tableView.reloadData()
+                    }
+                }
+                
+            }
+        })
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        activities.append(Activity(name: "iOS Dev", description: "iOS Development"))
-        activities.append(Activity(name: "Sharks", description: "Shark diving"))
+     
         
         
         self.tableView.reloadData()
@@ -46,11 +69,21 @@ class ActivityTableViewController: UITableViewController, AddActivityDelegate {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath) as! ActivityTableViewCell
 
         // Configure the cell...
         cell.textLabel?.text=activities[indexPath.row].name
         cell.detailTextLabel?.text=activities[indexPath.row].description
+        
+        //cell.name.text=activities[indexPath.row].name
+      
+        //cell.descriptionLabel.text=activities[indexPath.row].description
+        
+        if let image = activities[indexPath.row].image {
+            cell.imageView?.image=image
+        }
+        
+        
 
         return cell
     }

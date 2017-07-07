@@ -8,13 +8,17 @@
 
 import UIKit
 import MapKit
+import Alamofire
 
-class ActivityViewController: UIViewController,CLLocationManagerDelegate {
+class ActivityViewController: UIViewController,CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var Save: UIBarButtonItem!
     @IBOutlet weak var Cancel: UIBarButtonItem!
     @IBOutlet weak var descriptionTextView: UITextView!
+    
+    @IBOutlet weak var selectedImage: UIImageView!
+    @IBOutlet weak var selectImageButton: UIImageView!
     
     var activityTableViewController: ActivityTableViewController?
     
@@ -51,6 +55,27 @@ class ActivityViewController: UIViewController,CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func SelectImage(_ sender: Any) {
+        
+        // Image Picker
+        
+        let imagePickerController: UIImagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else{
+            fatalError("Expected a dictionary containing an image")
+        }
+        self.selectedImage.image=selectedImage
+        self.selectImageButton.isHidden=true
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+   
 
     @IBAction func Save(_ sender: Any) {
         
@@ -61,13 +86,32 @@ class ActivityViewController: UIViewController,CLLocationManagerDelegate {
             activity=Activity(name: nameTextField.text, description: descriptionTextView.text)
         }
         
+        Alamofire.request("https://ixloc-43376.firebaseio.com/activities.json", method: .post, parameters: activity?.toJSON(), encoding: JSONEncoding.default).responseJSON(completionHandler: {
+            response in
+            
+            switch response.result{
+            case.success:
+                self.delegate?.didAddActivity(activity: activity!)
+                self.dismiss(animated:true, completion: nil)
+                break
+            case.failure:
+                break
+            }
+        })
+        
+        if let image=self.selectedImage.image{
+            activity?.image=image
+        }
+            
+        
+        
         
         //activityTableViewController?.addActivity(activity:activity)
         
-        delegate?.didAddActivity(activity: activity!)
+        //delegate?.didAddActivity(activity: activity!)
         
         //activityTableViewController?.tableView?.reloadData()
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
     }
     @IBAction func Cancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
