@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import RealmSwift
 
 
 class ActivityTableViewController: UITableViewController, AddActivityDelegate {
@@ -49,6 +50,19 @@ class ActivityTableViewController: UITableViewController, AddActivityDelegate {
         
         self.tableView.reloadData()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let realm = try! Realm()
+        let acts = realm.objects(ActivityModel.self)
+        
+        for act in acts {
+            activities.append(Activity(name: act.name, description: act.descrp))
+        }
+        tableView.reloadData()
+        
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

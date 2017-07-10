@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		130DF21A1F0E80E9005764E5 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130DF2191F0E80E9005764E5 /* ActivityTableViewCell.swift */; };
+		13B1EEB01F13BF9D00948CC6 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B1EEAF1F13BF9D00948CC6 /* ActivityModel.swift */; };
 		13D713FC1F0BD0E600C6BB00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D713FB1F0BD0E600C6BB00 /* AppDelegate.swift */; };
 		13D713FE1F0BD0E600C6BB00 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D713FD1F0BD0E600C6BB00 /* MapViewController.swift */; };
 		13D714011F0BD0E600C6BB00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13D713FF1F0BD0E600C6BB00 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		09F6491D158C92E786963E3A /* Pods_iXloc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iXloc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		130DF2191F0E80E9005764E5 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
+		13B1EEAF1F13BF9D00948CC6 /* ActivityModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		13D713F81F0BD0E600C6BB00 /* iXloc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iXloc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13D713FB1F0BD0E600C6BB00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13D713FD1F0BD0E600C6BB00 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				13D714131F0BDF0300C6BB00 /* ActivityViewController.swift */,
 				13D714191F0D15AE00C6BB00 /* AddActivityDelegate.swift */,
 				13D7140F1F0BD59E00C6BB00 /* Activity.swift */,
+				13B1EEAF1F13BF9D00948CC6 /* ActivityModel.swift */,
 				13D714111F0BD73C00C6BB00 /* ActivityTableViewController.swift */,
 				13D714171F0C19A500C6BB00 /* SettingsTableViewController.swift */,
 				13D714021F0BD0E600C6BB00 /* Assets.xcassets */,
@@ -231,6 +234,7 @@
 			files = (
 				13D714121F0BD73C00C6BB00 /* ActivityTableViewController.swift in Sources */,
 				13D7141A1F0D15AE00C6BB00 /* AddActivityDelegate.swift in Sources */,
+				13B1EEB01F13BF9D00948CC6 /* ActivityModel.swift in Sources */,
 				13D713FE1F0BD0E600C6BB00 /* MapViewController.swift in Sources */,
 				13D714181F0C19A500C6BB00 /* SettingsTableViewController.swift in Sources */,
 				13D714101F0BD59E00C6BB00 /* Activity.swift in Sources */,

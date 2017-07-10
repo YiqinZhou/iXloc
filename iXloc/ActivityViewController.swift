@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Alamofire
+import RealmSwift
 
 class ActivityViewController: UIViewController,CLLocationManagerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
@@ -79,7 +80,26 @@ class ActivityViewController: UIViewController,CLLocationManagerDelegate, UIImag
 
     @IBAction func Save(_ sender: Any) {
         
+        
+        let activityModel = ActivityModel()
+        activityModel.name = nameTextField.text!
+        activityModel.descrp = descriptionTextView.text!
+        
+        
+        
+        // Get the default Realm
+        let realm = try! Realm()
+        // You only need to do this once (per thread)
+        
+        // Add to the Realm inside a transaction
+        try! realm.write {
+            realm.add(activityModel)
+        }
+        
+        print (realm.configuration.fileURL)
+        
         var activity: Activity?
+        
         if let location=self.latestLocation{
             activity=Activity(name: nameTextField.text, description: descriptionTextView.text, latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         }else{
@@ -102,7 +122,9 @@ class ActivityViewController: UIViewController,CLLocationManagerDelegate, UIImag
         if let image=self.selectedImage.image{
             activity?.image=image
         }
-            
+ 
+ 
+      
         
         
         
